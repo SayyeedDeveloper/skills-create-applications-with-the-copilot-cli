@@ -7,6 +7,9 @@
  *   - subtraction    (subtract)  e.g. 10 - 4 = 6
  *   - multiplication (multiply)  e.g. 45 * 2 = 90
  *   - division       (divide)    e.g. 20 / 5 = 4
+ *   - modulo         (modulo)     e.g. 5 % 2  = 1
+ *   - exponentiation (power)      e.g. 2 ^ 3  = 8
+ *   - square root    (squareRoot) e.g. √16    = 4
  *
  * Usage: node src/calculator.js <operation> <a> <b>
  *   node src/calculator.js add 2 3
@@ -35,7 +38,28 @@ function divide(a, b) {
   return a / b;
 }
 
-const operations = { add, subtract, multiply, divide };
+// modulo: returns the remainder of a divided by b, throws on a zero divisor
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error("Modulo by zero is not allowed");
+  }
+  return a % b;
+}
+
+// exponentiation: returns base raised to the exponent
+function power(base, exponent) {
+  return base ** exponent;
+}
+
+// square root: returns the square root of n, throws for negative numbers
+function squareRoot(n) {
+  if (n < 0) {
+    throw new Error("Cannot calculate the square root of a negative number");
+  }
+  return Math.sqrt(n);
+}
+
+const operations = { add, subtract, multiply, divide, modulo, power, squareRoot };
 
 // CLI entry point: parse the operation and numbers from the command line
 function main(argv) {
